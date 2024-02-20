@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@section Estilos{
+    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"rel="stylesheet" />
+}
+
+<div class="card">
+    <div class="card-header">
+        Empleados
+    </div>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                
+                <table id="tb_empleados" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>IdEmpleado</th>
+                            <th>Nombre</th>
+                            <th>Cargo</th>
+                            <th>Oficina</th>
+                            <th>Salario</th>
+                            <th>Telefono</th>
+                            <th>Fecha Ingreso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tb_empleados').DataTable({
+                "ajax": {
+                    "url": '@Url.Action("ListaEmpleados", "Home")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "idEmpleado" },
+                    { "data": "idEmpleado" },
+                    { "data": "nombre" },
+                    { "data": "cargo" },
+                    { "data": "oficina" },
+                    { "data": "salario" },
+                    { "data": "telefono" },
+                    { "data": "fechaIngreso" }
+                ],
+            });
+        });
+    </script>
+}

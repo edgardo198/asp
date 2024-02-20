@@ -1,0 +1,39 @@
+﻿@model List<CRUDCORE.Models.Empleado>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h5>Lista de Empleados</h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm"asp-action="Empleado_Detalle" asp-controller="Home" asp-route-idEmpleado="0">Crear Nuevo</a>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nombre Empleado</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th>Cargo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <th>@item.NombreCompleto</th>
+                    <th>@item.Correo</th>
+                    <th>@item.Telefono</th>
+                    <th>@item.oCargo.Descripcion</th>
+                    <th>
+                        <a class="btn btn-success btn-sm" asp-action="Empleado_Detalle" asp-controller="Home" asp-route-idEmpleado="@item.IdEmpleado">Editar</a>
+                        <a class="btn btn-danger btn-sm" asp-action="Eliminar" asp-controller="Home" asp-route-idEmpleado="@item.IdEmpleado">Eliminar</a>
+
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
